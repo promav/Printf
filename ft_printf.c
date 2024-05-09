@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pabromer <pabromer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pabromer <pabromer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:32:20 by pabromer          #+#    #+#             */
-/*   Updated: 2024/05/03 17:26:32 by pabromer         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:52:56 by pabromer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int ft_printf(char const *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list elements;
+	va_list	elements;
 	int		count;
 	int		i;
 
@@ -26,11 +26,11 @@ int ft_printf(char const *str, ...)
 		if (str[i] == '%')
 		{
 			count = count + ft_convert(str, elements, i);
-				i++;
+			i++;
 		}
 		else
 			count += ft_putchar(str[i]);
-		i++;	
+		i++;
 	}
 	va_end (elements);
 	return (count);

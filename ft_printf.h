@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabromer <pabromer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 10:52:06 by pabromer          #+#    #+#             */
-/*   Updated: 2024/05/08 13:53:12 by pabromer         ###   ########.fr       */
+/*   Created: 2024/05/03 10:32:23 by pabromer          #+#    #+#             */
+/*   Updated: 2024/05/09 10:51:37 by pabromer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_putnbr(int n)
-{
-	char	b;
-	long	a;
-	int		i;
+# include <unistd.h>
+# include <stdarg.h>
 
-	i = 0;
-	a = (long) n;
-	if (a < 0)
-	{
-		write (1, "-", 1);
-		a = -a;
-		i++;
-	}
-	if (a < 10)
-	{
-		b = a + 48;
-		i += ft_putchar(b);
-	}
-	else
-	{
-		i += ft_putnbr(a / 10);
-		i += ft_putnbr(a % 10);
-	}
-	return (i);
-}
+int	ft_putchar(char c);
+int	ft_putnbr(int n);
+int	ft_putunbr(unsigned int n);
+int	ft_putvoid(uintptr_t n);
+int	ft_putstr(char *s);
+int	ft_convert(const char *c, va_list args, int i);
+int	ft_puthexa(unsigned long long n, char c);
+int	ft_printf(const char *str, ...);
+
+#endif

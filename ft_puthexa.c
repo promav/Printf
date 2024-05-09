@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabromer <pabromer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 10:52:06 by pabromer          #+#    #+#             */
-/*   Updated: 2024/05/08 13:53:12 by pabromer         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:02:14 by pabromer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_puthexa(unsigned long long n, char c)
 {
-	char	b;
-	long	a;
-	int		i;
+	int			i;
 
 	i = 0;
-	a = (long) n;
-	if (a < 0)
-	{
-		write (1, "-", 1);
-		a = -a;
-		i++;
-	}
-	if (a < 10)
-	{
-		b = a + 48;
-		i += ft_putchar(b);
-	}
-	else
-	{
-		i += ft_putnbr(a / 10);
-		i += ft_putnbr(a % 10);
-	}
+	if (n >= 16)
+		i += ft_puthexa(n / 16, c);
+	if (c == 'x')
+		ft_putchar("0123456789abcdef"[n % 16]);
+	if (c == 'X')
+		ft_putchar("0123456789ABCDEF"[n % 16]);
+	i++;
 	return (i);
 }

@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putvoid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabromer <pabromer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 10:52:06 by pabromer          #+#    #+#             */
-/*   Updated: 2024/05/08 13:53:12 by pabromer         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:52:41 by pabromer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putvoid(uintptr_t n)
 {
-	char	b;
-	long	a;
-	int		i;
+	int			i;
 
 	i = 0;
-	a = (long) n;
-	if (a < 0)
-	{
-		write (1, "-", 1);
-		a = -a;
-		i++;
-	}
-	if (a < 10)
-	{
-		b = a + 48;
-		i += ft_putchar(b);
-	}
-	else
-	{
-		i += ft_putnbr(a / 10);
-		i += ft_putnbr(a % 10);
-	}
+	i += ft_putstr("0x");
+	i += ft_puthexa(n, 'x');
 	return (i);
 }
